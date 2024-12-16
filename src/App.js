@@ -1,18 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import React from 'react';
-import Login from './Login';
-import Home from './Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './login/Login.css';
+import HomePage from './home/HomePage.js';
+import Login from './login/Login.js';
+import { useAuth0 } from "@auth0/auth0-react";
+import {Route ,Routes } from 'react-router-dom';
 
+ 
 function App() {
+  const { isAuthenticated } = useAuth0();
   return (
-    <Router>
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/login" element={<Login />} />
-  </Routes>
-</Router>
+    <Routes>
+      { !isAuthenticated && (
+        <Route path="/login" element={<Login />} />
+      )}
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 }
 
