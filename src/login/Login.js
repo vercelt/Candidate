@@ -13,8 +13,6 @@ function Login() {
     loginWithRedirect({
       email: email,
       password: password,
-      // 考虑你有设置多个连接选项，可以指定connection，
-      // 例如使用Auth0数据库连接: connection: 'Username-Password-Authentication'
     });
   }
   
