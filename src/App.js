@@ -18,10 +18,8 @@ function App() {
       { isAuthenticated && (
        <Route path="/home" element={<HomePage />} />
       )}
-      { isLoading && (
-      <Route path="/" element={<LoadingPage />} />
-      )}
       
+      <Route path="/" element={<LoadingPage />} />      
     </Routes>
   );
 }
