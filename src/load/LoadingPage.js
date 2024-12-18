@@ -5,19 +5,14 @@ const LoadingPage = () => {
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isAuthenticated) {
       // 如果用户未登录，重定向到登录页面
       loginWithRedirect();
     }
   }, [isAuthenticated, isLoading, loginWithRedirect]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
     return (
       <div className='container'>
-        Please sign in first
+        <p className="loading-text"> Loading...</p>
       </div>
     );
   };
