@@ -8,7 +8,6 @@ const Sidebar = () => {
       <ul>
         <li><Link to="/home/profile">Profile</Link></li>
         <li><Link to="/home/settings">Settings</Link></li>
-        {/* 更多的菜单项可以在这里添加 */}
       </ul>
     </aside>
   );
