@@ -15,4 +15,7 @@
     flex-grow: 1;
     width: 100%;
     overflow: auto;
+    border: 0 solid;        /* 首先设置所有边框为0，外边框为实线 */
+    border-top-width: 1px;  /* 上边框宽度 */
+    border-color: #ccc;
   }
