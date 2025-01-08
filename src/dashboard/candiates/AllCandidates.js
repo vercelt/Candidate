@@ -2,19 +2,22 @@ import React, { useMemo, useEffect, useState } from "react";
 import "./AllCandidates.css";
 import GradientBox from "./GradientBox";
 import PaginatedTable from "./PaginatedTable";
-
+import Toast from "../Toast";
 const AllCandidates = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({});
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
+  const [error, setError] = useState(false);
 
   const onChangeData = (pagesize, pagenumber) => {
     setPageSize(pagesize);
     setPageNumber(pagenumber);
   };
   useEffect(() => {
+    setError(false);
+    setLoading(true);
     const url = `https://nextjs14-mock-api.vercel.app/api/prospect?pageSize=${pageSize}&pageNumber=${pageNumber}`;
     console.log(url);
     fetch(url, {
@@ -29,21 +32,12 @@ const AllCandidates = () => {
         setData(data.data);
         setPagination(data.pagination);
         setLoading(false);
+        setError(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        const mockData = {
-          data: mock_data,
-          pagination: {
-            total: 100,
-            pageSize: pageSize,
-            pageNumber: pageNumber,
-            totalPages: 10,
-          },
-        };
-        setData(mockData.data);
-        setPagination(mockData.pagination);
         setLoading(false);
+        setError(true);
       });
   }, [pageSize, pageNumber]);
 
@@ -80,306 +74,6 @@ const AllCandidates = () => {
     []
   );
 
-  const mock_data = [
-    {
-      lastname: "Alice",
-      firstname: "Jessica",
-      chinesename: "黃潔宜",
-      region: "2001 Region A",
-      districtcode: "District 1",
-      unitcode: "0000",
-      managercode: "7654320",
-      managername: "Sonia Tam",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 0,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 2,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 3,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 2,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-    {
-      lastname: "Alice",
-      firstname: "",
-      chinesename: "",
-      region: "",
-      districtcode: "",
-      unitcode: "",
-      managercode: "",
-      managername: "",
-      blockingstatus: 1,
-    },
-  ];
-
   return (
     <div>
       <GradientBox />
@@ -389,6 +83,24 @@ const AllCandidates = () => {
         pagination={pagination}
         onChangeData={onChangeData}
       />
+
+      {loading && (
+        <Toast
+          errorStyle={false}
+          message="Fetching data..."
+          visible={loading}
+          onClose={() => setLoading(false)}
+        />
+      )}
+
+      {error && (
+        <Toast
+          errorStyle={true}
+          message="Sorry, please try again later."
+          visible={error}
+          onClose={() => setError(false)}
+        />
+      )}
     </div>
   );
 };
