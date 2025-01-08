@@ -1,0 +1,29 @@
+.toast {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: visibility 0.5s, opacity 0.5s linear;
+  opacity: 1;
+}
+
+.error {
+  background-color: #f8dbda;
+  color: #991b1b;
+}
+
+.loading {
+  background-color: #e0f2f1;
+  color: #0f615c;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
