@@ -1,0 +1,159 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 保证顶部和底部内容分开 */
+  height: 100vh; /* 可根据需要设置高度 */
+  background-color: white; /* 背景颜色 */
+  border: 0 solid;   
+  border-right-width: 1px;
+  border-color: #ccc;
+
+}
+
+.sidebar {
+    width: 250px;
+    background: white;
+    padding: 0px 0px 0px 20px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar ul li {
+    height: 36px; /* 总行高 */
+    display: flex;
+    align-items: center; /* 垂直居中图片和文字 */
+    justify-content: flex-start; /* 横向开始处对齐 */
+  }
+  .sidebar ul li.with-divider {
+    border-bottom: 1px solid #E5E7EB; /* 分割线 */
+    margin-right: 20px;
+  }
+  
+  .sidebar ul li a {
+    display: flex;
+    align-items: center; /* 图片和文字垂直居中 */
+    text-decoration: none; /* 去除下划线 */
+    color: black; /* 字体颜色 */
+    flex-growth: 1; /* 使链接填充整个列表项 */
+    padding: 0 10px; /* 侧边填充，可以根据需要调整 */
+  }
+  
+  .sidebar ul li a img[data-effect="special"] {
+    margin-right: 10px; /* 图标和文字之间的间隔 */
+    width: 15px;
+    height: 15px;
+  }
+  
+  .sidebar ul li a span {
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    text-decoration: none;
+    color: #333333;
+  }
+ 
+  .sidebar ul li a span.active {
+    color: #009188;
+  }
+  .sidebar ul li a span[data-effect="left-padding"] {
+    padding-left: 25px;
+  }
+
+  .svg-icon {
+    filter: invert(36%) sepia(90%) saturate(1195%) hue-rotate(145deg) brightness(98%) contrast(99%);
+  }
+
+  .badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 22px;
+    height: 18px;
+    padding: 0 6px;
+    background-color: #dff3f1;
+    color: #0F615C;
+    border-radius: 9px; /* 半径为高度的一半使其完全圆角 */
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  .applicant-arrow {
+    margin-left: 10px;
+    width: 14px;
+    height: 8px;
+  }
+
+  .sidebar-bottom-container {
+    padding: 20px; /* 或根据设计需求调整 */
+    text-align: center;
+    gap: 8px;
+    background-color: white; 
+    opacity: 1; 
+    border: none; 
+    cursor: pointer;
+   }
+
+   .logout-container {
+    display: flex;
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 水平居中，如果需要 */
+    width: 190px;
+    height: 51px;
+    gap: 4px;
+    border-radius: 4px 12px 4px 12px; 
+    background-color: white; 
+    color: #EF4444;
+    opacity: 1; 
+    border: none; 
+    cursor: pointer;
+    border: 1px solid #EF4444;
+    text-align: center;
+  }
+  
+  .logout {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22.5px;
+    letter-spacing: 0.005em;
+    font-weight: bold; 
+  }
+
+  .logout-container img {
+    width: 11.67px;
+    height: 11.67px;
+    margin-right: 4px;
+  }
+
+  .language-container {
+    display: flex;
+    align-items: center; /* 垂直居中子元素 */
+    justify-content: flex-start; 
+    padding: 10px 0px 0px 0px;
+    gap: 8px;
+  }
+
+  .language-container img {
+    width: 12.83px;
+    height: 12.83px;
+  }
+  .language-container img[data-effect="arrow"] {
+    width: 8.17px;
+    height: 4.67px;
+  }
+
+  .language-container span {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    color: #6B7280;
+  }
