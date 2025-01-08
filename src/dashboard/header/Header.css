@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap");
+
+.dashboard-header {
+  width: 100%;
+  height: 64px;
+  background-color: white;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 确保子项分布在两端 */
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.smartTalenConnect {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left img {
+  width: 22.4px;
+  height: 19.2px;
+  margin-right: 8px;
+}
+
+.notification-wrapper {
+  position: relative;
+  display: inline-block; /* 或者任何适合你布局的 display 类型 */
+}
+
+.notification-wrapper img {
+  display: block; /* 删除图片下的空隙 */
+  width: 16.8px;
+  height: 19.2px;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px; /* 小红点的大小 */
+  height: 8px; /* 小红点的大小 */
+  background-color: red;
+  border-radius: 50%; /* 圆形 */
+  transform: translate(20%, -20%); /* 调整红点位置，使其部分在图片外 */
+}

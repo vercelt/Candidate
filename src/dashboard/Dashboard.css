@@ -1,0 +1,50 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  transition: margin-left 0.3s;
+}
+
+.main-content {
+  display: flex;
+  height: calc(100vh - 10px);
+}
+.left-area {
+  display: flex;
+  width: 250px;
+  height: 100vh; /* 可根据需要设置高度 */
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  will-change: transform, width; /* Hint to browsers for performance optimization */
+}
+
+.left-area-hidden {
+  transform: translateX(-250px);
+  width: 0; /* Reduce the width to 0 */
+}
+
+.content-area {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
+  border: 0 solid; /* 首先设置所有边框为0，外边框为实线 */
+  border-top-width: 1px; /* 上边框宽度 */
+  border-color: #ccc;
+  transition: flex-grow 0.3s ease-in-out;
+}
+
+.arrow-btn {
+  position: absolute;
+  top: 90%;
+  left: calc(250px + 8px); /* 侧边栏宽度减去按钮一半宽度 */
+  transition: left 0.3s ease-in-out; /* 左位移的平滑过渡效果 */
+  width: 24px;
+  height: 24px;
+}
+
+.transformed-btn {
+  left: 30px;
+  transform: translateX(-100%) rotate(180deg); /* 向左移动到靠近屏幕边缘的30px处并旋转180度 */
+  transition: left 0.3s ease-in-out; /* 左位移的平滑过渡效果 */
+}

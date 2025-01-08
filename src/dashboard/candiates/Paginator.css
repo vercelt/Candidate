@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  white-space: nowrap;
+}
+
+.pagination-left-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 5px;
+}
+
+.pagination-container span {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #6b7280;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.styled-input {
+  height: 39px;
+  width: 64px;
+  padding-right: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22.5px;
+  letter-spacing: 0.005em;
+  text-align: center;
+}
+
+.arrow {
+  position: absolute;
+  right: 10px;
+  width: 14px;
+  height: 8px;
+}
+
+.page-operation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.page-arrow {
+  width: 25.33px;
+  height: 25.33px;
+  margin-top: 5px;
+}
+
+.page-operation-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-right: 5px;
+}
+
+.page-operation-container .current {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  background: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-operation-container label {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-right: 5px;
+}
+.page-operation-container .enable {
+  color: #6b7280;
+}
+
+.page-operation-container button.enable:hover {
+  color: #373438;
+}
+
+.page-operation-container .disable {
+  color: #d1d5db;
+}
+
+.page-operation-container .svg-enable {
+  filter: invert(24%) sepia(10%) saturate(1170%) hue-rotate(184deg)
+    brightness(93%) contrast(84%);
+}
+
+.page-operation-container .svg-disable {
+  filter: brightness(0) saturate(100%) invert(93%) sepia(4%) saturate(428%)
+    hue-rotate(176deg) brightness(93%) contrast(91%);
+}

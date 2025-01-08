@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap");
+
+.gradient-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to right bottom, #e9f8f8, #99d3cf);
+  color: #333333;
+}
+
+.gradient-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #fff;
+  color: #333;
+}
+
+.all-candidates-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  line-height: 45px;
+  letter-spacing: 0.005em;
+  text-align: left;
+  color: #111928;
+  font-weight: 700;
+  padding: 0px 0px 0px 20px;
+}
+
+.add-candidate-button {
+  border-radius: 4px 12px 4px 12px;
+  background-color: #009188;
+  width: 231px;
+  height: 51px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.005em;
+  text-align: center;
+  font-weight: medium;
+  border: none;
+}

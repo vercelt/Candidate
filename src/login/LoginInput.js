@@ -1,11 +1,27 @@
-import React from 'react';
-import './LoginInput.css'; 
+import React from "react";
+import "./LoginInput.css";
 
-function LoginInput({ labelText, placeholder, value, type, onChange }) {
+function LoginInput({ labelText, placeholder }) {
   return (
     <div className="email-input-container">
       <label className="email-label">{labelText}</label>
-      <input type={type} className="email-input" placeholder={placeholder} value={value} onChange={onChange}/>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+      <input type="email" className="email-input" placeholder={placeholder} />
+=======
+=======
+>>>>>>> Stashed changes
+      <input
+        type={type}
+        className="email-input"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     </div>
   );
 }
