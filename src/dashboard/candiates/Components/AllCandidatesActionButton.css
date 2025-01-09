@@ -1,17 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
-.top-header {
-  display: "flex";
-  width: cal(100%-250px);
-  height: 99px;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(right, #e9f8f8, #99d3cf);
-}
-
-.paginated-table {
-  display: "flex";
-  padding: 0px 0px 0px 20px;
-}
 
 .block-status-button {
   width: auto;

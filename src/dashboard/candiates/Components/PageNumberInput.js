@@ -7,14 +7,14 @@ function PageNumerInput({ currentNumber, maxNumber, onNumberChanged }) {
     setNumber(currentNumber);
   }, [currentNumber]);
 
-  const handleNumberChanged = (e) => {
+  const handleInputBlur = (e) => {
     const value = e.target.valueAsNumber;
-    console.log("value:" + value);
     onNumberChanged(value);
   };
 
   const handleInputChanged = (e) => {
     const value = e.target.valueAsNumber;
+    console.log("blur value:" + value);
     const lastValue = Math.min(Math.max(value, 1), maxNumber);
     setNumber(lastValue);
   };
@@ -26,7 +26,7 @@ function PageNumerInput({ currentNumber, maxNumber, onNumberChanged }) {
       defaultValue="1"
       value={number}
       onChange={handleInputChanged}
-      onBlur={handleNumberChanged}
+      onBlur={handleInputBlur}
     />
   );
 }

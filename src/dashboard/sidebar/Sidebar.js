@@ -105,24 +105,30 @@ const Sidebar = () => {
         </ul>
       </aside>
 
-      <div className="sidebar-bottom-container">
-        <div className="logout-container">
-          <img src="/images/logout.png" alt="logout" />
-          <span className="logout">Logout</span>
-        </div>
-
-        <div className="language-container">
-          <img src="/images/language.png" alt="language" />
-          <span>EN</span>
-          <img
-            src="/images/language-arrow-down.png"
-            alt="language"
-            data-effect="arrow"
-          />
-        </div>
-      </div>
+      <SidebarBottom />
     </div>
   );
 };
 
 export default Sidebar;
+
+const SidebarBottom = () => {
+  return (
+    <div className="sidebar-bottom-container">
+      <div className="logout-container">
+        <img src="/images/logout.png" alt="logout" />
+        <span className="logout">Logout</span>
+      </div>
+
+      <div className="language-container">
+        <img src="/images/language.png" alt="language" />
+        <span>EN</span>
+        <img
+          src="/images/language-arrow-down.png"
+          alt="language"
+          data-effect="arrow"
+        />
+      </div>
+    </div>
+  );
+};

@@ -23,8 +23,6 @@ const PaginatedTable = ({ columns, data, pagination, onChangeData }) => {
     prepareRow,
     page,
     setPageSize,
-    selectedFlatRows,
-    state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,

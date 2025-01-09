@@ -25,15 +25,21 @@ const Dashboard = () => {
         <div className="content-area">
           <Outlet />
         </div>
-        <img
-          className="arrow-btn"
-          src="/images/expand.png"
-          alt="Arrow"
-          onClick={toggleSidebar}
-        />
+        <ToggleSidebar toggleSidebar={toggleSidebar} />
       </div>
     </div>
   );
 };
 
 export default Dashboard;
+
+const ToggleSidebar = ({ toggleSidebar }) => {
+  return (
+    <img
+      className="arrow-btn"
+      src="/images/expand.png"
+      alt="Arrow"
+      onClick={toggleSidebar}
+    />
+  );
+};
