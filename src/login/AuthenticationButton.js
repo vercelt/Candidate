@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const AuthenticationButton = () => {
+const AuthenticationButton = ({ onLogin }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return isAuthenticated ? (
@@ -12,7 +12,7 @@ const AuthenticationButton = () => {
       Sign In
     </button>
   ) : (
-    <button class="sign-in-button" onClick={() => loginWithRedirect()}>
+    <button class="sign-in-button" onClick={onLogin}>
       Sign In
     </button>
   );

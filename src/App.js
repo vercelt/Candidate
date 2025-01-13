@@ -7,6 +7,7 @@ import UserProfile from "./dashboard/profile/UserProfile.js";
 import UserSettings from "./dashboard/settings/UserSettings.js";
 import Overview from "./dashboard/overview/Overview.js";
 import AllCandidates from "./dashboard/candiates/AllCandidates.js";
+import Login from "./login/Login.js";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -30,6 +31,7 @@ function App() {
           </Route>
         )}
         <Route path="/" element={<Loading />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

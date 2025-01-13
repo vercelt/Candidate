@@ -1,44 +1,48 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-import './Login.css';
-import AuthenticationButton from './AuthenticationButton.js';
-import LoginInput from './LoginInput.js'; 
-function Login() {
- 
-=======
 import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import "./Login.css";
 import AuthenticationButton from "./AuthenticationButton.js";
 import LoginInput from "./LoginInput.js";
+import auth0 from "auth0-js";
+
 function Login() {
-=======
-import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import "./Login.css";
-import AuthenticationButton from "./AuthenticationButton.js";
-import LoginInput from "./LoginInput.js";
-function Login() {
->>>>>>> Stashed changes
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loginWithRedirect } = useAuth0();
+  // const { loginWithRedirect } = useAuth0();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    loginWithRedirect({
-      email: email,
-      password: password,
-    });
-  };
+  const auth0Client = new auth0.WebAuth({
+    domain: "dev-51tpzbit3ouz06gq.us.auth0.com",
+    clientID: "JoXIwV7wdNEmKvEiqTBE5yGvwMS225xz",
+    redirectUri: `${window.location.origin}/dashboard`,
+    responseType: "token", // 这里设置responseType
+    scope: "openid email profile",
+  });
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  function handleLogin() {
+    return (event) => {
+      console.log("login");
+      event.preventDefault();
+      auth0Client.login(
+        {
+          realm: "Username-Password-Authentication", // 这通常是Auth0默认数据库连接的名称
+          email,
+          password,
+        },
+        function (err, authResult) {
+          if (err) {
+            console.error("Error authenticating", err);
+            return;
+          }
+          // 处理成功认证后的逻辑，例如设置用户的登录状态
+        }
+      );
+    };
+  }
+
   return (
     <div className="login-box">
-      <form action="#">  {/* Empty */}
+      <form action="#">
+        {" "}
+        {/* Empty */}
         <p className="smart-talent">SmartTalenConnect</p>
         <p className="welcome">
           <span className="welcome-to">Welcome to</span>
@@ -47,16 +51,6 @@ function Login() {
         </p>
         <p className="signin">Please sign in to continue</p>
         <div className="input-container">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        <div className="email-input-wrapper">
-          <LoginInput labelText="Email" placeholder="Email"/>
-        </div>
-        <div className="email-input-wrapper">
-           <LoginInput labelText="Password" placeholder="Password"/>
-=======
-=======
->>>>>>> Stashed changes
           <div className="email-input-wrapper">
             <LoginInput
               labelText="Email"
@@ -74,14 +68,10 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
           </div>
         </div>
         <p className="forgot-password">Forgot my password</p>
-        <AuthenticationButton />
+        <AuthenticationButton onLogin={(event) => handleLogin()(event)} />
       </form>
     </div>
   );

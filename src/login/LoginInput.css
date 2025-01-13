@@ -6,22 +6,9 @@
 }
 
 .email-input-wrapper {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    margin-bottom: 16px; /* 添加外边距以产生间距 */
-  }
-  
-  /* 可选择移除最后一个元素的外边距 */
-=======
   margin-bottom: 16px;
 }
 
->>>>>>> Stashed changes
-=======
-  margin-bottom: 16px;
-}
-
->>>>>>> Stashed changes
 .email-input-wrapper:last-child {
   margin-bottom: 0;
 }
@@ -47,18 +34,8 @@
   line-height: 22.5px;
   letter-spacing: 0.005em;
   text-align: left;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  padding-left: 16px; 
-  color: #6B7280; /* placeholder 文字的颜色 */
-=======
   padding-left: 16px;
   color: #6b7280;
->>>>>>> Stashed changes
-=======
-  padding-left: 16px;
-  color: #6b7280;
->>>>>>> Stashed changes
 }
 
 .email-input::placeholder {
