@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Sign In with Auth0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+    .container {
+        display: flex;
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+        height: 100vh;
+        /* 设置容器高度为视口高度 */
+        width: 100%;
+        margin: 0;
+        background-color: #54565c;
+    }
+
+    .login-box {
+        width: 552px;
+        height: 594px;
+        background-color: white;
+        border-radius: 8px 36px 8px 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .smart-talent {
+        font-family: 'Noto Sans TC', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: #000000;
+    }
+
+    .welcome span {
+        font-family: 'Poppins', sans-serif;
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: 0.005em;
+        text-align: left;
+        text-decoration-style: solid;
+        text-decoration-skip-ink: none;
+        text-underline-position: under;
+        color: #111928;
+    }
+
+    .welcome-to {
+        font-weight: 700;
+    }
+
+    .platform-name {
+        font-weight: 400;
+    }
+
+    .signin {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+        text-align: left;
+        text-decoration: none;
+        text-decoration-skip-ink: none;
+        color: #111928;
+    }
+
+    .forgot-password {
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.005em;
+        text-align: left;
+        text-decoration-skip-ink: none;
+        color: #007A72;
+        cursor: pointer;
+        margin-bottom: 16px;
+    }
+
+    .sign-in-button {
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 22.5px;
+        letter-spacing: 0.005em;
+        text-align: center;
+        width: 392px;
+        height: 51px;
+        padding: 12px 24px;
+        gap: 8px;
+        border-radius: 4px 12px 4px 12px;
+        background-color: #70C1BC;
+        color: white;
+        opacity: 1;
+        border: none;
+        cursor: pointer;
+    }
+
+    .email-input-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .email-input-wrapper {
+        margin-bottom: 16px;
+    }
+
+    .email-input-wrapper:last-child {
+        margin-bottom: 8px;
+    }
+
+    .email-label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 21px;
+        letter-spacing: 0.005em;
+        text-align: left;
+        color: #111928;
+    }
+
+    .email-input {
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        border: 1px solid white;
+        /* #E5E7EB; */
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22.5px;
+        letter-spacing: 0.005em;
+        text-align: left;
+        padding-left: 10px;
+        color: #333333;
+        margin: 3px;
+    }
+
+    .email-input::placeholder {
+        color: #6B7280;
+    }
+
+    .password-input-container {
+        display: inline-block;
+        position: relative;
+        width: 392px;
+        height: 51px;
+        background-color: white;
+        /* #fbd0d0;  */
+        border: 1px solid #E5E7EB;
+        /* #E5E7EB; */
+        border-radius: 8px;
+    }
+
+    .img {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        width: 16px;
+        height: 16px;
+        transform: translateY(-50%);
+    }
+
+    .password-input-container.error {
+        background-color: #fbd0d0;
+        border-radius: 8px;
+    }
+
+    .email-input.error {
+        border: 1px solid #EF4444;
+        /* #E5E7EB; */
+    }
+
+    .error-label {
+        color: #EF4444;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.005em;
+        text-align: left;
+        margin-top: 10px;
+        width: 392px;
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <form onsubmit="return false;" method="post">
+                <p class="smart-talent">SmartTalenConnect</p>
+                <p class="welcome">
+                    <span class="welcome-to">Welcome to</span><br />
+                    <span class="platform-name"> SmartTalenConnect Platform</span>
+                </p>
+                <p class="signin">Please sign in to continue</p>
+                <div class="input-container">
+                    <div class="email-input-wrapper">
+                        <div class="email-input-container">
+                            <label class="email-label">Email</label>
+                            <div class="password-input-container email-container-error">
+                                <input id="email" type="email" class="email-input email-input-error" placeholder="Email"
+                                    value="epam.cd.03@gmail.com" />
+                            </div>
+                        </div>
+                        <label class="error-label email-error"></label>
+                    </div>
+                    <div class="email-input-wrapper">
+                        <div class="email-input-container">
+                            <label class="email-label">Password</label>
+                            <div class="password-input-container password-container-error">
+                                <input id="password" type="password" class="email-input password-input-error"
+                                    placeholder="Password" value="epam.cd.033" />
+                                <img id="toggleIcon" onclick="togglePasswordVisibility()" class="img"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAAXNSR0IArs4c6QAAA9pJREFUeF7tm01y4jAQhbG5ES7WISfLcLKQNWVuhD0jCk0JRf3fMk4QO8DYrU+vX7eM3G3aCyXQNT44gQaIUEgD1ADZTKQpqCmoKchGwFtB4zj+6bru7Xq9Hvf7/alqdCs4uciDzufzoe/7zxh313Wn3W73voJxVAtBBCioZ7PZfKTR/HZIZkAB1m+GJAIUYJRUpIV0T9lDpsi3eZ6/4mfTNJ2e6XViQB6Qci/jGEhQaThu6eKgAmSFdLlcPud5flAOB1LufUvAUgOyQILSVAoppnZNUCZAFkglFcU0UqrrOAxDqLKuLzMgCyRsJMGn4vfb7faDAy0A9laTC6AwEMhXPFuAAI0Jy01NLoAoT/GEFFW11DVNgCTlugYkSlEeKacGJIFTe+1GgZqm6V3bbKoAEXBu+e/ZcXPLEtZfaSGJAXHgUD5RI92oa4bvNZBEgCRwqIB/CiQRIEjC1Mw8I92wKjcMA3vc7AO1cNaoJIl6WYCQ2RA1ZCtTEit2EpAXnDUq6d+9PhISCggxZfLEUGnGjF4ifW7ppyaG8iMUELTittyoH8dxxgZXExLgo+hkg4Cg1KKIY4On1k9LdNzpvzJJrCAkDNC3mabKOXX7ohRcUEzpVkYtJUknvghII0XKEwDvecqyBIBUVNE3QJCJWlILuqmWnnPpFqDkhaUxcgGpq1ZUVq7KUgotCYmbJVxAm9oKosqxtyeVFFTy2KIHSXKU8h5s4BD02kqStC+iKsbpPIUNIpi6tSBBHgtV6KX7IFHr4A1JszJAO2mg61UbtmRdRzWVGk+SpNb/plXT3FlSDRs41DRCMUogQdelmt/FV/P3nghdj3GNPxzHgaRJLZaCqNJL0ccGKtzAYOq4S4A4YG8TwJ0taBVugUT9XXOP7cHztMadxs+FIwKE3cexQIoTlG+mwjYiaCCl55dscmArCFpPxQF6QOKqGYtFog7O9USAKEiW6sYJNj9GoyTpdcSAXg2SChAFyWPTgGSmaypJDSgMgLGBQd11cwHV6LjTa5sARUjYpqZaaqLAPAzS8ESAGVAMhGr87suIL+u+ZwkYD0hugChfyoMNewnjZ9jendi/hAdoOPsUQyW9n/fhkQnusiRPbVdAnJSDvCXucI3fM2Gkp3PpuKsDSjtj5oZLrh9Dxx2htPWobu4KykfBXG9pILEqpBVSdUDpyB1g3fxFspYivJGEvCigHFZ43/f9IRhwLqH0iR8pkJIctX9EPA2QJqesv8khcRbYLwUo6f4PXFW+HCCpChsgglgD1ABJk+rx+KagpqCmIBuBpiAbv+ZBTUFNQTYCxK//Auy9XXY5BR6ZAAAAAElFTkSuQmCC"
+                                    alt="Icon">
+                            </div>
+                        </div>
+                        <label class="error-label password-error"></label>
+                    </div>
+                </div>
+                <p class="forgot-password">Forgot my password</p>
+                <button type="submit" id="btn-login" class="sign-in-button">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.auth0.com/js/auth0/9.28/auth0.min.js"></script>
+    <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+    <script>
+
+        const visibleBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAAXNSR0IArs4c6QAABCpJREFUeF7tm02W2yAMx0Nyo/jNup2TtXOyma7znBvFbsUzedgjoQ8E6YJsOk0whp/+kiUM4TQ+RQJh8CkTGIAYhQxAA1BdEBkKGgoaCqojMBRUx697DLrdbj9hyJfL5Vc+9HVd4/f5J4TwBf9f1/UP/Lssy9fb21v8rtenOSAAkmBgECwTBXAArQewJoBaQGFAfkzT9NsCm7vGFVAC46UUbvDI7+6gXADVgElxJo818HcI4cf23bfYJADnBqoa0DzPIO1dwKUmADAej8cH/K4NtmCE8/mcYInu949zNSgzIKlqEhQtEE4lm2GgWRFW7f1NgDjV1A6Kg3P8nRvP1t6kJjUgwWBMA9FCwdq3GJsK0P1+/6SeUKCa6/X67jHR2j4YUCoDigGV4CzL8u4dY1pC0hhTBIiC0zvWWKAVDCtSEguIkqvGCpaJeV5TcDkWUhFQTceeE/ToyzoXEpC1Q4/JtOqDmlMphpYArT1qnfwekHy2DvZUTKIgoYCwTlrEnFQ+QN11TB/SkgYA9K7UNfP7BoiS4TRNbEDXuIYgqcu7Y4Op5t6bYT4lHoIBaupa0hqOmLAbKArS0dV2gAirug1KqRqUkWdSio3nGEqegHq41jzPmDph7SeuM8NSSFrSwOLStk7kWtJg8Sg3whMQEd17qIe8R49UA3O1XEUR0KtcS+Iu0lihCdLHtiUVRUCczGpu7mGA1gYsqSgQFnJzLcwAlpzqaERLHyVDUyIJra2zKegYnNUGwCbgmZthQoEQgALyvLEXIGoCnqXJ8SkLKg2vsox2YpjSexgSjUGSp4smcGOW0S7PtgZEhRoUUOsAaOm/dZDGAMUYNB7zp1PxMQ+AuGxS405Y25pkT1N5W8dZepIXSw3PWGQpGyzXaCFxBesTUGsVUa6cCtB8kxS3n8jz6UUU0M88bbfc0bpgLbiLxvDqJJPqXJIk7wDVxArpDK1rQt7v4KTLO+IlV894VChgKc5uqkk34FwrtXvpov1mxbhZilq0b7EPURNKUECUq1kSPKnrpXatX/1IXauoICo32i5yl7sWorW9JW0Yr56ZbXrsuy4LdauFW11Xs8ODBcQleNqqvBUEqsSBpJPY9CUKFSJAJUj/a1wqJaWah40YkCB3EVmkh4JKu+G0W4NVgASQoMnLQAmydPXY1ICEkLqCEr7vV8OJhbRV8orCM+6s997CIoQSX2vDK23tGjibKErBCWSddxVhWcqH/JyZ4rCMSTX5gM0KyjvJzlFIz1A8Lz8emouy3g6ywN8KGLs+a1TjDih1mIpP7vyEVJ3adrXuhN3PRUFYx0rX07LYqaXl6cNmgI6qovb7WMjk+4mswVd63+aAjgPJz32VDs3lB+2gD+s5MykIql13QLUD7n39AMQQH4AGoDqnHAoaChoKqiMwFFTHb8Qght9fmZrDUC97yqIAAAAASUVORK5CYII="
+        const hideBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAAXNSR0IArs4c6QAAA9pJREFUeF7tm01y4jAQhbG5ES7WISfLcLKQNWVuhD0jCk0JRf3fMk4QO8DYrU+vX7eM3G3aCyXQNT44gQaIUEgD1ADZTKQpqCmoKchGwFtB4zj+6bru7Xq9Hvf7/alqdCs4uciDzufzoe/7zxh313Wn3W73voJxVAtBBCioZ7PZfKTR/HZIZkAB1m+GJAIUYJRUpIV0T9lDpsi3eZ6/4mfTNJ2e6XViQB6Qci/jGEhQaThu6eKgAmSFdLlcPud5flAOB1LufUvAUgOyQILSVAoppnZNUCZAFkglFcU0UqrrOAxDqLKuLzMgCyRsJMGn4vfb7faDAy0A9laTC6AwEMhXPFuAAI0Jy01NLoAoT/GEFFW11DVNgCTlugYkSlEeKacGJIFTe+1GgZqm6V3bbKoAEXBu+e/ZcXPLEtZfaSGJAXHgUD5RI92oa4bvNZBEgCRwqIB/CiQRIEjC1Mw8I92wKjcMA3vc7AO1cNaoJIl6WYCQ2RA1ZCtTEit2EpAXnDUq6d+9PhISCggxZfLEUGnGjF4ifW7ppyaG8iMUELTittyoH8dxxgZXExLgo+hkg4Cg1KKIY4On1k9LdNzpvzJJrCAkDNC3mabKOXX7ohRcUEzpVkYtJUknvghII0XKEwDvecqyBIBUVNE3QJCJWlILuqmWnnPpFqDkhaUxcgGpq1ZUVq7KUgotCYmbJVxAm9oKosqxtyeVFFTy2KIHSXKU8h5s4BD02kqStC+iKsbpPIUNIpi6tSBBHgtV6KX7IFHr4A1JszJAO2mg61UbtmRdRzWVGk+SpNb/plXT3FlSDRs41DRCMUogQdelmt/FV/P3nghdj3GNPxzHgaRJLZaCqNJL0ccGKtzAYOq4S4A4YG8TwJ0taBVugUT9XXOP7cHztMadxs+FIwKE3cexQIoTlG+mwjYiaCCl55dscmArCFpPxQF6QOKqGYtFog7O9USAKEiW6sYJNj9GoyTpdcSAXg2SChAFyWPTgGSmaypJDSgMgLGBQd11cwHV6LjTa5sARUjYpqZaaqLAPAzS8ESAGVAMhGr87suIL+u+ZwkYD0hugChfyoMNewnjZ9jendi/hAdoOPsUQyW9n/fhkQnusiRPbVdAnJSDvCXucI3fM2Gkp3PpuKsDSjtj5oZLrh9Dxx2htPWobu4KykfBXG9pILEqpBVSdUDpyB1g3fxFspYivJGEvCigHFZ43/f9IRhwLqH0iR8pkJIctX9EPA2QJqesv8khcRbYLwUo6f4PXFW+HCCpChsgglgD1ABJk+rx+KagpqCmIBuBpiAbv+ZBTUFNQTYCxK//Auy9XXY5BR6ZAAAAAElFTkSuQmCC"
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password');
+            var currentType = passwordInput.getAttribute('type');
+            var toggleIcon = document.getElementById('toggleIcon');
+            passwordInput.setAttribute('type', currentType === 'password' ? 'text' : 'password');
+            toggleIcon.src = currentType === 'password' ? hideBase64 : visibleBase64
+        }
+
+        function displayPasswordError(error) {
+            const passwordContainer = document.querySelector('.password-container-error');
+            const passwordInput = document.querySelector('.password-input-error');
+            // const errMsg = 'Your account has been locked. Please click ‘Forgot my password’ below to reset your password. ';
+            const errorLabel = document.querySelector('.password-error');
+            if (error) {
+                passwordContainer.classList.add('error');
+                passwordInput.classList.add('error');
+                errorLabel.textContent = error
+                errorLabel.style.display = 'block';
+            } else {
+                passwordContainer.classList.remove('error');
+                passwordInput.classList.remove('error');
+                errorLabel.style.display = 'none';
+            }
+
+        }
+
+        function displayEmailError(error) {
+            const passwordContainer = document.querySelector('.email-container-error');
+            const passwordInput = document.querySelector('.email-input-error');
+            const errorLabel = document.querySelector('.email-error');
+
+            if (error) {
+                passwordContainer.classList.add('error');
+                passwordInput.classList.add('error');
+                const errMsg = 'Please input valid email.';
+                errorLabel.textContent = errMsg
+                errorLabel.style.display = 'block';
+            } else {
+                passwordContainer.classList.remove('error');
+                passwordInput.classList.remove('error');
+                errorLabel.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('load', function () {
+            var config = JSON.parse(
+                decodeURIComponent(escape(window.atob('@@config@@')))
+            );
+
+            var leeway = config.internalOptions.leeway;
+            if (leeway) {
+                var convertedLeeway = parseInt(leeway);
+
+                if (!isNaN(convertedLeeway)) {
+                    config.internalOptions.leeway = convertedLeeway;
+                }
+            }
+
+            var params = {
+                overrides: {
+                    __tenant: config.auth0Tenant,
+                    __token_issuer: config.authorizationServer.issuer
+                },
+                domain: config.auth0Domain,
+                clientID: config.clientID,
+                redirectUri: config.callbackURL,
+                responseType: 'code',
+                scope: config.internalOptions.scope,
+                _csrf: config.internalOptions._csrf,
+                state: config.internalOptions.state,
+                _intstate: config.internalOptions._intstate
+            };
+
+            var webAuth = new auth0.WebAuth(params);
+            var databaseConnection = 'Username-Password-Authentication';
+
+            function login(e) {
+                displayPasswordError()
+                displayEmailError()
+                e.preventDefault();
+                var button = this;
+                var username = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                button.disabled = true;
+
+                var request = () => {
+                    webAuth.login({
+                        realm: databaseConnection,
+                        username: username,
+                        password: password
+                    }, function (err) {
+                        if (err) displayError(err);
+                        button.disabled = false;
+                    });
+                };
+                request();
+            }
+
+            function displayError(err) {
+                displayPasswordError(err.description)
+                alert(Object.getOwnPropertyNames(err))
+            }
+            document.getElementById('btn-login').addEventListener('click', login);
+        });
+
+
+        document.getElementById('email').addEventListener('input', function () {
+            const emailInput = this;
+            const emailContainer = emailInput.parentNode;
+            const errorLabel = document.getElementById('emailErrorLabel');
+
+            // 简单的电子邮件验证正则表达式
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (!emailRegex.test(emailInput.value)) {
+                displayEmailError(true)
+            } else {
+                displayEmailError(false)
+            }
+            displayPasswordError()
+        });
+
+    </script>
+</body>
+
+</html>

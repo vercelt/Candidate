@@ -13,7 +13,6 @@ const Paginator = ({ pagination, onChangeData }) => {
     currentStartIndex,
     currentEndIndex,
     total,
-    setCurrentPage,
     setPageSize,
     setCurrentStartIndex,
     setCurrentEndIndex,
@@ -26,7 +25,6 @@ const Paginator = ({ pagination, onChangeData }) => {
     setCurrentStartIndex(1);
     setCurrentEndIndex(pageSize);
     setTotalPages(totalPages);
-    // setCurrentPage(1);
     onChangeData(pageSize, currentPage);
   };
 

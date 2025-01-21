@@ -3,7 +3,6 @@ import { useTable, usePagination, useRowSelect } from "react-table";
 import "./PaginatedTable.css";
 import Paginator from "./Paginator";
 const handleCheckboxClick = (event, rowId) => {
-  console.log("rowId:" + rowId);
   const input = event.target.previousSibling;
   if (input && input.type === "checkbox") {
     input.click();
@@ -36,22 +35,13 @@ const PaginatedTable = ({ columns, data, pagination, onChangeData }) => {
         {
           id: "selection",
           Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div className="checkbox-container">
-              <input type="checkbox" {...getToggleAllRowsSelectedProps()} />
-              <span
-                className="checkmark"
-                onClick={(e) => handleCheckboxClick(e, -1)}
-              ></span>
-            </div>
+            <CheckboxHeader
+              getToggleAllRowsSelectedProps={getToggleAllRowsSelectedProps}
+              handleCheckboxClick={handleCheckboxClick}
+            />
           ),
           Cell: ({ row }) => (
-            <div className="checkbox-container">
-              <input type="checkbox" {...row.getToggleRowSelectedProps()} />
-              <span
-                className="checkmark"
-                onClick={(e) => handleCheckboxClick(e, row.id)}
-              ></span>
-            </div>
+            <CheckboxCell row={row} handleCheckboxClick={handleCheckboxClick} />
           ),
         },
         ...columns,
@@ -97,3 +87,30 @@ const PaginatedTable = ({ columns, data, pagination, onChangeData }) => {
 };
 
 export default PaginatedTable;
+
+const CheckboxHeader = ({
+  getToggleAllRowsSelectedProps,
+  handleCheckboxClick,
+}) => {
+  return (
+    <div className="checkbox-container">
+      <input type="checkbox" {...getToggleAllRowsSelectedProps()} />
+      <span
+        className="checkmark"
+        onClick={(e) => handleCheckboxClick(e, -1)}
+      ></span>
+    </div>
+  );
+};
+
+const CheckboxCell = ({ row, handleCheckboxClick }) => {
+  return (
+    <div className="checkbox-container">
+      <input type="checkbox" {...row.getToggleRowSelectedProps()} />
+      <span
+        className="checkmark"
+        onClick={(e) => handleCheckboxClick(e, row.id)}
+      ></span>
+    </div>
+  );
+};

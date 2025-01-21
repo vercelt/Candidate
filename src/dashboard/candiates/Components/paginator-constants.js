@@ -1,0 +1,8 @@
+export class PaginatorConstants {
+  static CURRENT_PAGE_DEFAULE_VALUE = 1;
+  static PAGE_SIZE_DEFAULT_VALUE = 10;
+  static TOTAL_PAGES_DEFAULT_VALUE = 1;
+  static CURRENT_START_DEFAULT_VALUE = 1;
+  static CURRENT_END_DEFAULT_VALUE = 10;
+  static CURRENT_TOTAL_DEFAULT_VALUE = 0;
+}

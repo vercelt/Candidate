@@ -1,61 +1,22 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import {
+  setActiveItemIndex,
+  toggleSubmenuVisibility,
+} from "../../redux/actions/sideBarActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sidebar = () => {
-  const items = [
-    {
-      icon: "/images/home.svg",
-      text: "Home",
-      link: "/dashboard/overview",
-      hasDivider: true,
-    },
-    {
-      icon: "/images/prospect.svg",
-      text: "All Candidates",
-      link: "/dashboard/allcandidates",
-      hasDivider: false,
-    },
-    {
-      icon: "/images/applicant.svg",
-      text: "Applicantions",
-      link: "/dashboard/applicant",
-      hasDivider: true,
-      badge: 10,
-    },
-    {
-      icon: "/images/recruiting.svg",
-      text: "Recruiting Tools",
-      link: "",
-      expand: true,
-    },
-    {
-      text: "Recruiting QR Code",
-      link: "/dashboard/recruiting-qr-code",
-      invisible: true,
-    },
-    {
-      icon: "/images/settings.svg",
-      text: "Account",
-      link: "/dashboard/account",
-    },
-  ];
-
-  const [navItems, setNavItems] = useState(items);
-
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const { navItems, activeItemIndex } = useSelector((state) => state.sidebar);
+  const dispatch = useDispatch();
   const handleItemClick = (index, event) => {
     if (index === 3) {
       event.preventDefault();
+      dispatch(toggleSubmenuVisibility(index));
+    } else {
+      dispatch(setActiveItemIndex(index));
     }
-    setActiveItemIndex(index);
-    const updatedNavItems = navItems.map((item, idx) => {
-      if (index === 3 && idx === index + 1) {
-        return { ...item, invisible: !item.invisible };
-      }
-      return item;
-    });
-    setNavItems(updatedNavItems.flat());
   };
 
   return (

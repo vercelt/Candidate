@@ -13,11 +13,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.input-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .smart-talent {
   font-family: "Noto Sans TC", sans-serif;
   font-size: 14px;
@@ -87,4 +82,7 @@
   opacity: 1;
   border: none;
   cursor: pointer;
+}
+.input-container {
+  display: block;
 }

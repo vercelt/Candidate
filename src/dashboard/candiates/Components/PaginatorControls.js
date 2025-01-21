@@ -14,12 +14,14 @@ const PaginatorControls = ({
 
   return (
     <div className="page-operation-container">
-      <PreviousButton
+      <PaginatorControlButton
         enable={canPrevious}
-        currentPage={currentPage}
+        arrowPageIndex={1}
+        textPageIndex={currentPage - 1}
         gotoPage={gotoPage}
         arrowImgName={"page_arrow_left.svg"}
         text={"Previous"}
+        isPrevious={true}
       />
 
       <PageNumerInput
@@ -32,74 +34,58 @@ const PaginatorControls = ({
         &nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{totalPages}
       </label>
 
-      <NextButton
+      <PaginatorControlButton
         enable={canNext}
-        currentPage={currentPage}
-        totalPages={totalPages}
+        arrowPageIndex={totalPages}
+        textPageIndex={currentPage + 1}
         gotoPage={gotoPage}
         arrowImgName={"page_arrow_right.svg"}
         text={"Next"}
+        isPrevious={false}
       />
     </div>
   );
 };
 export default PaginatorControls;
 
-const PreviousButton = ({
+const PaginatorControlButton = ({
   enable,
-  currentPage,
+  arrowPageIndex,
+  textPageIndex,
   gotoPage,
   arrowImgName,
   text,
+  isPrevious,
 }) => {
-  console.log("text:" + text);
+  const arrowButton = (
+    <PaginatorArrowButton
+      enable={enable}
+      pageIndex={arrowPageIndex}
+      gotoPage={gotoPage}
+      arrowImgName={arrowImgName}
+      text={text}
+    />
+  );
+
+  const textButton = (
+    <PaginatorTextButton
+      enable={enable}
+      pageIndex={textPageIndex}
+      gotoPage={gotoPage}
+      text={text}
+    />
+  );
+  const firstButton = isPrevious ? arrowButton : textButton;
+  const secondButton = isPrevious ? textButton : arrowButton;
   return (
     <>
-      <PreviousNextArrowButton
-        enable={enable}
-        pageIndex={1}
-        gotoPage={gotoPage}
-        arrowImgName={arrowImgName}
-        text={text}
-      />
-      <PreviousNextTextButton
-        enable={enable}
-        pageIndex={currentPage - 1}
-        gotoPage={gotoPage}
-        text={text}
-      />
+      {firstButton}
+      {secondButton}
     </>
   );
 };
 
-const NextButton = ({
-  enable,
-  currentPage,
-  totalPages,
-  gotoPage,
-  arrowImgName,
-  text,
-}) => {
-  return (
-    <>
-      <PreviousNextTextButton
-        enable={enable}
-        pageIndex={currentPage + 1}
-        gotoPage={gotoPage}
-        text={text}
-      />
-      <PreviousNextArrowButton
-        enable={enable}
-        pageIndex={totalPages}
-        gotoPage={gotoPage}
-        arrowImgName={arrowImgName}
-        text={text}
-      />
-    </>
-  );
-};
-
-const PreviousNextArrowButton = ({
+const PaginatorArrowButton = ({
   enable,
   pageIndex,
   gotoPage,
@@ -118,7 +104,7 @@ const PreviousNextArrowButton = ({
   );
 };
 
-const PreviousNextTextButton = ({ enable, pageIndex, gotoPage, text }) => {
+const PaginatorTextButton = ({ enable, pageIndex, gotoPage, text }) => {
   return (
     <button
       className={enable ? "enable" : "disable"}

@@ -18,10 +18,25 @@ const AllCandidates = () => {
     fetchCandidatesApi(
       pageSize,
       pageNumber,
-      setData,
-      setPagination,
-      setError,
-      setLoading
+      (data) => {
+        //success
+        console.log("Data fetched successfully:", data);
+        setData(data.data);
+        setPagination(data.pagination);
+      },
+      () => {
+        //error
+        setError(true);
+      },
+      () => {
+        //start
+        setLoading(true);
+        setError(false);
+      },
+      () => {
+        //end
+        setLoading(false);
+      }
     );
   }, [pageSize, pageNumber, setData, setPagination, setError, setLoading]);
 

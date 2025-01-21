@@ -1,16 +1,21 @@
-import React, { useState } from "react";
 import "./Dashboard.css";
 import Header from "./header/Header.js";
 import Sidebar from "./sidebar/Sidebar.js";
 import { Outlet } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleSidebarVisibility } from "../redux/actions/sideBarActions.js";
 
 const Dashboard = () => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const dispatch = useDispatch();
+  const isSidebarVisible = useSelector(
+    (state) => state.sidebar.isSidebarVisible
+  );
   const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
+    dispatch(toggleSidebarVisibility());
     const btn = document.querySelector(".arrow-btn");
     btn.classList.toggle("transformed-btn");
   };
+
   return (
     <div className="dashboard-container">
       <Header />
